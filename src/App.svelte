@@ -3,12 +3,19 @@
 	import Incrementer from './components/Incrementer.svelte';
 	import Decrementer from './components/Decrementer.svelte';
 	import Resetter from './components/Resetter.svelte';
+	import { onDestroy } from 'svelte';
 
 	let countValue;
 
 	count.subscribe(value => {
 		countValue = value;
 	});
+
+	const unsubscribe = count.subscribe(value => {
+	countValue = value;
+	});
+
+	onDestroy(unsubscribe)
 </script>
 
 <h1>Hello world!</h1>
